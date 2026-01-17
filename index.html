@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
+<meta charset="UTF-8">
 <title>Simo AI</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;text-align:center;padding:20px}
+.box{background:#1e293b;padding:15px;margin:10px auto;max-width:400px;border-radius:10px}
+input,button{padding:10px;width:90%;margin:5px;border:none;border-radius:5px}
+button{background:#22c55e;font-weight:bold}
+.vip{color:gold;font-weight:bold}
+#chat{min-height:100px;text-align:right}
+</style>
 </head>
 <body>
-<h1>Simo AI 🤖</h1>
-<p>مرحبا بك فموقعي</p>
+
+<h1>🤖 Simo AI</h1>
+<p>كتب سؤالك و نخليك نجاوبك</p>
+
+<div class="box">
+  <input id="question" placeholder="كتب سؤالك هنا">
+  <button onclick="askAI()">سول</button>
+</div>
+
+<div class="box" id="chat"></div>
+
+<div class="box">
+  <h3>🔓 Free</h3>
+  <button onclick="alert('Free خدام')">دخول Free</button>
+</div>
+
+<div class="box">
+  <h3 class="vip">👑 VIP</h3>
+  <input id="vipCode" placeholder="دخل كود VIP">
+  <button onclick="checkVIP()">تفعيل</button>
+  <p id="vipStatus"></p>
+</div>
+
+<script>
+let answers = {
+  "السلام":"و عليكم السلام سمو 💙",
+  "شنو هو القانون":"القانون هو مجموعة من القواعد المنظمة للمجتمع",
+  "شكون انت":"أنا Simo AI خدام معاك 🤖",
+  "شحال الربح":"الربح كيكون حسب تحليل الماتش",
+};
+
+function askAI(){
+  let q = document.getElementById("question").value.trim();
+  let chat = document.getElementById("chat");
+  if(!q){alert("كتب سؤال");return;}
+  let a = answers[q] || "سمح ليا سمو، مزال ما تعلمتش هاد السؤال";
+  chat.innerHTML += "<p>🧑‍💻 "+q+"</p><p>🤖 "+a+"</p><hr>";
+}
+
+function checkVIP(){
+  let code = document.getElementById("vipCode").value;
+  let status = document.getElementById("vipStatus");
+  if(code==="2008"){status.innerHTML="✅ VIP مفعل";status.style.color="gold";}
+  else if(code==="2007"){status.innerHTML="👑 مرحبا بالمالك";status.style.color="gold";}
+  else{status.innerHTML="❌ كود خطأ";status.style.color="red";}
+}
+</script>
+
 </body>
 </html>
